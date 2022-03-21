@@ -6,18 +6,18 @@ import (
 	"testing"
 )
 
-func TestClimbStairs(t *testing.T) {
+func Test_climbStairs(t *testing.T) {
 	assert.Equal(t, 8, climbStairs(5))
 }
 
-func TestClimbStairsDP(t *testing.T) {
+func Test_climbStairsDP(t *testing.T) {
 	assert.Equal(t, 8, climbStairs(5))
 }
 
-func TestClimbStairsDPSimplify(t *testing.T) {
+func Test_climbStairsDPSimplify(t *testing.T) {
 	assert.Equal(t, 8, climbStairs(5))
 }
 
-func BenchmarkClimbStairs(b *testing.B) {
+func Benchmark_climbStairs(b *testing.B) {
 	fmt.Sprintln(climbStairsDP(1))
 }
