@@ -5,5 +5,5 @@ import (
 )
 
 func Test_swapPairs(t *testing.T) {
-	
+
 }
