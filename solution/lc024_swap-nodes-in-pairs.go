@@ -8,5 +8,5 @@ package solution
  * }
  */
 func swapPairs(head *ListNode) *ListNode {
-	return nil
+	return reverseKGroup(head, 2)
 }
