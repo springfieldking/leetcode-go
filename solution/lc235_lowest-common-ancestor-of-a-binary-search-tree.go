@@ -9,20 +9,15 @@ package solution
  * }
  */
 
-func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-	if root == nil || root == p || root == q {
-		return root
+func lowestCommonAncestor235(root, p, q *TreeNode) *TreeNode {
+	// 如果都小于当前节点，去左子树寻找
+	if p.Val < root.Val && q.Val < root.Val {
+		return lowestCommonAncestor235(root.Left, p, q)
 	}
-	left := lowestCommonAncestor(root.Left, p, q)
-	right := lowestCommonAncestor(root.Right, p, q)
-	if left != nil && right != nil {
-		// 左右子树都有，那么当前节点就是最最近的节点
-		return root
-	} else if left == nil {
-		// 如果左边是空，返回右边
-		return right
-	} else {
-		// 否则返回左边
-		return left
+	// 如果都大雨当前节点，去右子树寻找
+	if p.Val > root.Val && q.Val > root.Val {
+		return lowestCommonAncestor235(root.Right, p, q)
 	}
+	// 如果分叉，说明当前节点就是
+	return root
 }
