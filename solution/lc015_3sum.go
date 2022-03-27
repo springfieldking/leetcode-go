@@ -5,30 +5,40 @@ import (
 )
 
 func threeSum(nums []int) [][]int {
-	var rets [][]int
-	var target = 0
-	ln := len(nums)
-	for i := 0; i < ln; i++ {
-		twoSumTar := target - nums[i]
-		for j := i + 1; j < ln; j++ {
-			oneSumTar := twoSumTar - nums[j]
-			for k := j + 1; k < ln; k++ {
-				if nums[k] == oneSumTar {
-					data := []int{nums[i], nums[j], nums[k]}
-					sort.Ints(data)
-					has := false
-					for _, arr := range rets {
-						if arr[0] == data[0] && arr[1] == data[1] && arr[2] == data[2] {
-							has = true
-							break
-						}
-					}
-					if !has {
-						rets = append(rets, data)
-					}
-				}
+	// 先排序
+	sort.Ints(nums)
+	ans := make([][]int, 0)
+	for first := 0; first < len(nums); first++ {
+		// 相同参数直接跳过，上次已经处理过了
+		if first > 0 && nums[first] == nums[first-1] {
+			continue
+		}
+		target := 0 - nums[first]
+		second := first + 1
+		thrid := len(nums) - 1
+		for second < thrid {
+			// 相同参数直接跳过，上次已经处理过了
+			if second > first+1 && nums[second] == nums[second-1] {
+				second++
+				continue
+			}
+			if thrid < len(nums)-1 && nums[thrid] == nums[thrid+1] {
+				thrid--
+				continue
+			}
+
+			// 处理
+			if nums[second]+nums[thrid] < target {
+				second++
+			} else if nums[second]+nums[thrid] > target {
+				thrid--
+			} else if nums[second]+nums[thrid] == target {
+				ans = append(ans, []int{nums[first], nums[second], nums[thrid]})
+				second++
+				thrid--
 			}
 		}
+
 	}
-	return rets
+	return ans
 }
