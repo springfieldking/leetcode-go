@@ -8,9 +8,13 @@ func removeDuplicates(nums []int) int {
 	left := 1
 	right := 1
 	for ; right < n; right++ {
-		// 相邻相同的跳过,直到找到相邻不同
-		// 用右侧数据覆盖左侧数据
-		if nums[right] != nums[right-1] {
+		if nums[right] == nums[right-1] {
+			// right跳过相邻相同的,直到找到相邻不同
+			continue
+		} else {
+			// 用右侧数据覆盖左侧数据
+			// 然后left右移一次
+			// left <= right
 			nums[left] = nums[right]
 			left++
 		}
